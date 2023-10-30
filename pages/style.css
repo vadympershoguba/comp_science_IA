@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: "andale mono", monospace;
+}
+
+#websiteLogoBox {
+    padding-left: 20px;
+    width: 250px;
+    height: 100px;
+}
+
+#userAccountBox {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 300px;
+    height: 100px;
+}
+
+#signUpButton, #logInBUtton {
+    font-family: "andale mono", monospace;
+    margin-top: 15px;
+    width: 145px;
+    border: none;
+    background-color: white;
+    border: 1px solid black;
+    height: 35px;
+}
+
+#signUpBoxLabel {
+    font-family: "andale mono", monospace;
+    color: white;
+    margin-left: 137px;
+}
+
+#signUpBox {
+    margin-top: 180px;
+    position: absolute;
+    left: 40%;
+    z-index: 1;
+    display: none;
+    background-color: rgb(0, 0, 0);
+    height: 250px;
+    width: 20%;
+}
+
+#signUpUsernameInput {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 10%;;
+    width: 80%;
+    height: 30px;
+}
+
+#signUpPasswordInput {
+    margin-top: 20px;
+    margin-left: 10%;;
+    width: 80%;
+    height: 30px;
+}
+
+#signUpBoxButton{
+    font-family: "andale mono", monospace;
+    margin-top: 20px;
+    width: 81.6%;
+    margin-left: 10%;
+    height: 30px;
+}
+
+#signUpBoxBack{
+    font-family: "andale mono", monospace;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    color: black;
+}
