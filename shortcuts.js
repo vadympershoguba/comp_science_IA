@@ -59,3 +59,40 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
 });
 */
+
+//db.run('create table users(user_id, username, password)')
+
+
+/*
+
+db.run(`INSERT INTO users(user_id, username, password) VALUES(?, ?, ?)`, ['222222', 'tanaken_2', 'Legn123!'], function(err) {
+  if (err) {
+    return console.log(err.message);
+  }
+});
+
+db.run(`INSERT INTO users(user_id, username, password) VALUES(?, ?, ?)`, ['333333', 'tanaken_3', 'Legion123'], function(err) {
+  if (err) {
+    return console.log(err.message);
+  }
+});
+
+db.run(`INSERT INTO users(user_id, username, password) VALUES(?, ?, ?)`, ['444444', 'tanaken_4', 'Legio23!'], function(err) {
+  if (err) {
+    return console.log(err.message);
+  }
+});
+
+db.run(`INSERT INTO users(user_id, username, password) VALUES(?, ?, ?)`, ['555555', 'tanaken_5', 'gion123!'], function(err) {
+  if (err) {
+    return console.log(err.message);
+  }
+});
+
+db.run(`INSERT INTO users(user_id, username, password) VALUES(?, ?, ?)`, ['666666', 'tanaken_6', 'Legio3!'], function(err) {
+  if (err) {
+    return console.log(err.message);
+  }
+});
+
+*/
