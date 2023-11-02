@@ -84,3 +84,84 @@ body {
     display: none;
     margin-left: 100px;
 }
+
+.vertical-line {
+    position: absolute;
+    top: 200px;
+    left: 49%;
+    border-left: 1px solid black; 
+    height: 680px; 
+    margin: 0 auto; 
+}
+
+#createNewTestButton{
+    font-family: "andale mono", monospace;
+    width: 600px;
+    height: 40px;
+    position: absolute;
+    left: 1000px;
+    top: 200px;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#vertical-line-creation{
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    border-left: 1px solid black; 
+    height: 680px; 
+    margin: 0 auto; 
+}
+
+#testName {
+    width: 400px;
+    margin-left: 40px;
+    height: 40px;
+    position: absolute;
+    top: 230px;
+    border: 1px solid black;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+}
+
+#labelTestName {
+    position: absolute;
+    top: 180px;
+    left: 40px;
+}
+
+#testComplexity{
+    width: 400px;
+    margin-left: 40px;
+    height: 40px;
+    position: absolute;
+    top: 320px;
+    border: 1px solid black;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+}
+
+#labelTestComplexity{
+    position: absolute;
+    top: 270px;
+    left: 40px;
+}
+
+#labelTestTopic{
+    position: absolute;
+    top: 360px;
+    left: 40px;
+}
+
+#testTopic{
+    width: 400px;
+    margin-left: 40px;
+    height: 40px;
+    position: absolute;
+    top: 410px;
+    border: 1px solid black;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+}

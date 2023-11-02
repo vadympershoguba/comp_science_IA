@@ -8,6 +8,17 @@ document.getElementById('signUpBoxBack').addEventListener('click', ()=>{
     document.getElementById('body').style.filter = 'blur(0px)'
 });
 
+document.addEventListener("DOMContentLoaded", ()=>{
+  username = localStorage.getItem("username");
+  if (username.length >= 4) {
+    document.getElementById('usernameText').style.display = 'block'
+    document.getElementById('usernameText').innerHTML = username;
+    document.getElementById('signUpButton').style.display = 'none'
+    document.getElementById('logInBUtton').style.display = 'none'
+  }
+});
+
+
 document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
     fetch('/signUpUser', {
         method: 'POST',
@@ -29,6 +40,12 @@ document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
           document.getElementById('usernameText').innerHTML = document.getElementById('signUpUsernameInput').value;
           document.getElementById('signUpButton').style.display = 'none'
           document.getElementById('logInBUtton').style.display = 'none'
+          localStorage.setItem("username", document.getElementById('signUpUsernameInput').value);
         }
       })
 }); 
+
+document.getElementById('menuBox').addEventListener('click', ()=>{
+  document.getElementById('menuBox').style.display = 'none';
+  document.getElementById('creationBox').style.display = 'block';
+});
