@@ -79,3 +79,8 @@ body {
     left: 10px;
     color: black;
 }
+
+#usernameText {
+    display: none;
+    margin-left: 100px;
+}

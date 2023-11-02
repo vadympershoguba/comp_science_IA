@@ -9,7 +9,7 @@ document.getElementById('signUpBoxBack').addEventListener('click', ()=>{
 });
 
 document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
-    fetch('/checkUserInDB', {
+    fetch('/signUpUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,4 +20,15 @@ document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
         }),
       })
       .then(response => response.json())
-});
+      .then(data => {
+        alert(data.message)
+        if (data.message == "You have successfully signed up!") {
+          document.getElementById('signUpBox').style.display = 'none'
+          document.getElementById('body').style.filter = 'blur(0px)'
+          document.getElementById('usernameText').style.display = 'block'
+          document.getElementById('usernameText').innerHTML = document.getElementById('signUpUsernameInput').value;
+          document.getElementById('signUpButton').style.display = 'none'
+          document.getElementById('logInBUtton').style.display = 'none'
+        }
+      })
+}); 

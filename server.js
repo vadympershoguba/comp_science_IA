@@ -18,6 +18,6 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-const checkUserInDB = require('./routes/checkUserInDB')
-app.use('/checkUserInDB', checkUserInDB);
+const signUpUser = require('./routes/signUpUser')
+app.use('/signUpUser', signUpUser);
 
