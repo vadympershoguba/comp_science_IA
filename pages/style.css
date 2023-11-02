@@ -165,3 +165,62 @@ body {
     font-family: "andale mono", monospace;
     font-size: 20px;
 }
+
+#addQuestionButton{
+    width: 200px;
+    height: 40px;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    left: 520px;
+}
+
+#saveTheTest{
+    width: 200px;
+    height: 40px;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    left: 1680px;
+}
+
+.questionField {
+    width: 1340px;
+    height: 600px;
+    position: absolute;
+    left: 540px;
+    top: 280px;
+}
+
+#questionsList{
+    width: 1340px;
+    height: 60px;
+    position: absolute;
+    left: 540px;
+    top: 200px; 
+}
+
+.questonListItem{
+    width: 60px;
+    height: 60px;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+    margin-left: 20px;
+}
+
+.typeOfQuestionSelect{
+    width: 240px;
+    height: 35px;
+    background-color: white;
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 0px;
+}
