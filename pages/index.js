@@ -103,3 +103,31 @@ document.getElementById('checkbox4').addEventListener('click', ()=>{
   document.getElementById('checkbox4').style.backgroundColor = document.getElementById('checkbox4').value == 0 ? 'green' : 'white';
   document.getElementById('checkbox4').value = document.getElementById('checkbox4').value == 0 ? 1 : 0;
 });
+
+document.getElementById('typeOfQuestion').addEventListener('change', ()=>{
+  if (typeOfQuestion.value == 'openAnswer') {
+    multipleChoiceDiv.style.display = 'none';
+    openAnswerDiv.style.display = 'block';
+    trueFalseDiv.style.display = 'none'
+  }
+  else if (typeOfQuestion.value == 'multipleChoice') {
+    multipleChoiceDiv.style.display = 'block';
+    openAnswerDiv.style.display = 'none';
+    trueFalseDiv.style.display = 'none'
+  }
+  else if (typeOfQuestion.value == 'trueFalse') {
+    multipleChoiceDiv.style.display = 'none';
+    openAnswerDiv.style.display = 'none';
+    trueFalseDiv.style.display = 'block'
+  }
+});
+
+document.getElementById('trueFalseCheck1').addEventListener('click', ()=>{
+  document.getElementById('trueFalseCheck1').style.backgroundColor = document.getElementById('trueFalseCheck1').value == 0 ? 'green' : 'white';
+  document.getElementById('trueFalseCheck1').value = document.getElementById('trueFalseCheck1').value == 0 ? 1 : 0;
+});
+
+document.getElementById('trueFalseCheck2').addEventListener('click', ()=>{
+  document.getElementById('trueFalseCheck2').style.backgroundColor = document.getElementById('trueFalseCheck2').value == 0 ? 'green' : 'white';
+  document.getElementById('trueFalseCheck2').value = document.getElementById('trueFalseCheck2').value == 0 ? 1 : 0;
+})

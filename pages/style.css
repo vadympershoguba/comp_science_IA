@@ -271,3 +271,17 @@ body {
     width: 1360px; 
     margin: 0 auto; 
 }
+
+#openAnswerText{
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+    width: 700px;
+    height: 265px;
+    border: 1px solid black;
+    max-width: 700px;
+    min-width: 700px;
+    max-height: 265px;
+    min-height: 265px;
+    padding-top: 10px;
+    padding-left: 10px;
+}

@@ -46,22 +46,34 @@
                     <option value="openAnswer">Open Answer</option>
                     <option value="trueFalse">True or False</option>
                 </select>
+                    <h2>Question:</h2>
+                    <input type="text" id="inputText">
 
-                <h2>Question:</h2>
-                <input type="text" id="inputText">
-
-                <h2>Answer Options:</h2>
-                <div class="multipleChoiseOptionsDiv">
-                    <button value="0" id="checkbox1" class="checkMultipleChoise"></button>
-                    <input id="option1" class="optionTextMultipleChoise" type="text">
-                    <button value="0" id="checkbox2" class="checkMultipleChoise"></button>
-                    <input id="option2" class="optionTextMultipleChoise" type="text">
-                    <button value="0" id="checkbox3" class="checkMultipleChoise"></button>
-                    <input id="option3" class="optionTextMultipleChoise" type="text">
-                    <button value="0" id="checkbox4" class="checkMultipleChoise"></button>
-                    <input id="option4" class="optionTextMultipleChoise" type="text">
+                <div id="multipleChoiceDiv">
+                    <h2>Answer Options:</h2>
+                    <div class="multipleChoiseOptionsDiv">
+                        <button value="0" id="checkbox1" class="checkMultipleChoise"></button>
+                        <input id="option1" class="optionTextMultipleChoise" type="text">
+                        <button value="0" id="checkbox2" class="checkMultipleChoise"></button>
+                        <input id="option2" class="optionTextMultipleChoise" type="text">
+                        <button value="0" id="checkbox3" class="checkMultipleChoise"></button>
+                        <input id="option3" class="optionTextMultipleChoise" type="text">
+                        <button value="0" id="checkbox4" class="checkMultipleChoise"></button>
+                        <input id="option4" class="optionTextMultipleChoise" type="text">
+                    </div>
                 </div>
 
+                <div style="display: none;" id="openAnswerDiv">
+                    <h2>Answer:</h2>
+                    <textarea type="text" id="openAnswerText"></textarea>
+                </div>
+
+                <div style="display: none;" id="trueFalseDiv">
+                    <button value="0" id="trueFalseCheck1" class="checkMultipleChoise"></button>
+                    <input placeholder="True" id="trueText" class="optionTextMultipleChoise" type="text">
+                    <button value="0" id="trueFalseCheck2" class="checkMultipleChoise"></button>
+                    <input placeholder="False" id="falseText" class="optionTextMultipleChoise" type="text">
+                </div>
             </div>
         </div>
     </div>
