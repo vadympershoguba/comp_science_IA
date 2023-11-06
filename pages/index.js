@@ -72,11 +72,51 @@ class Question {
   }
 }
 
+let marginnn = 0
+
 document.getElementById('addQuestionButton').addEventListener('click', ()=>{
     let answers = Array.from(document.getElementsByClassName('checkMultipleChoise')).map(input => input.value)
     test.addQuestion(inputText.value, typeOfQuestion.value, [option1.value, option2.value, option3.value, option4.value], answers)
-    console.log(test)
+    emptyLines()
+
+    const questionNumbers = Array.from(document.getElementsByClassName('questonListItem'))
+    questionNumbers[questionNumbers.length-1].style.border = '1px solid black';
+    let button = document.createElement('button')
+    button.classList = 'questonListItem';
+    button.style.border = '5px solid black';
+    button.style.marginLeft = `${marginnn + 80}px`;
+    marginnn+= 80;
+    button.textContent = questionNumbers.length+1
+    questionsList.appendChild(button)
 });
+
+function emptyLines() {
+  inputText.value = '';
+
+  option1.value = '';
+  option2.value = '';
+  option3.value = '';
+  option4.value = '';
+
+  checkbox1.style.backgroundColor = 'white'
+  checkbox1.value = 0
+  checkbox2.style.backgroundColor = 'white'
+  checkbox2.value = 0
+  checkbox3.style.backgroundColor = 'white'
+  checkbox3.value = 0
+  checkbox4.style.backgroundColor = 'white'
+  checkbox4.value = 0
+
+  openAnswerText.value = '';
+
+  trueFalseCheck1.style.backgroundColor = 'white'
+  trueFalseCheck1.value = 0
+  trueFalseCheck2.style.backgroundColor = 'white'
+  trueFalseCheck2.value = 0
+
+  trueText.value = '';
+  falseText.value = '';
+}
 
 function giveId () {
   const min = 1;
