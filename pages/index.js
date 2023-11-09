@@ -107,11 +107,11 @@ document.getElementById('addQuestionButton').addEventListener('click', ()=>{
         document.getElementById(prevButton).style.border = '1px solid black'
         //add Onclick function for created button
         button.onclick = () => {
-        prevButton = activeButton
-        activeButton = button.id
-        button.style.border = '5px solid black';
-        document.getElementById(prevButton).style.border = '1px solid black'
-        openQuestion(button);
+            prevButton = activeButton
+            activeButton = button.id
+            button.style.border = '5px solid black';
+            document.getElementById(prevButton).style.border = '1px solid black'
+            openQuestion(button);
         };
     }
 });
@@ -166,6 +166,15 @@ function openQuestion(button){
   else if (question.type == 'openAnswer'){
     showOAQuestion(question)
   }
+}
+
+function showOAQuestion(question){
+typeOfQuestion.value = 'openAnswer'
+  multipleChoiceDiv.style.display = 'none';
+  trueFalseDiv.style.display = 'none';
+  openAnswerDiv.style.display = 'block'
+  //show question
+  inputText.value = question.question;
 }
 
 function showTFQUestion(question){
