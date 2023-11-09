@@ -80,7 +80,14 @@ document.getElementById('addQuestionButton').addEventListener('click', ()=>{
     prevButton = activeButton;
     //save question properties
     let answers = Array.from(document.getElementsByClassName('checkMultipleChoise')).map(input => input.value)
-    test.addQuestion(inputText.value, typeOfQuestion.value, [option1.value, option2.value, option3.value, option4.value], answers)
+    let tfAnswers = Array.from(document.getElementsByClassName('checkTrueFalseChoise')).map(input=>input.value)
+    if (typeOfQuestion.value == 'multipleChoice') {
+      test.addQuestion(inputText.value, typeOfQuestion.value, [option1.value, option2.value, option3.value, option4.value], answers)
+    }else if (typeOfQuestion.value == 'trueFalse'){
+      test.addQuestion(inputText.value, typeOfQuestion.value, ['True', 'False'], tfAnswers)
+    }else if (typeOfQuestion.value == 'openAnswer'){
+      test.addQuestion(inputText.value, typeOfQuestion.value, [], [])
+    }
     emptyLines()
     const questionNumbers = Array.from(document.getElementsByClassName('questonListItem'))
     //create new button
@@ -123,9 +130,28 @@ function openQuestion(button){
   }
 }
 
-function showMCQuestion(question){
+function showTFQUestion(question){
+  typeOfQuestion.value = 'trueFalse'
+  multipleChoiceDiv.style.display = 'none';
+  trueFalseDiv.style.display = 'block';
+  openAnswerDiv.style.display = 'none'
   //show question
-  inputText.value = question.question
+  inputText.value = question.question;
+  //show correct answers
+  trueFalseCheck1.style.backgroundColor = question.answer[0] == '1' ? 'green' : 'white';
+  trueFalseCheck2.style.backgroundColor = question.answer[1] == '1' ? 'green' : 'white';
+  //show options
+  trueText.value = question.options[0];
+  falseText.value = question.options[1];
+}
+
+function showMCQuestion(question){
+  typeOfQuestion.value = 'multipleChoice'
+  multipleChoiceDiv.style.display = 'block';
+  trueFalseDiv.style.display = 'none';
+  openAnswerDiv.style.display = 'none'
+  //show question
+  inputText.value = question.question;
   //show correct answers
   checkbox1.style.backgroundColor = question.answer[0] == '1' ? 'green' : 'white';
   checkbox2.style.backgroundColor = question.answer[1] == '1' ? 'green' : 'white';
