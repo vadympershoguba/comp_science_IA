@@ -77,40 +77,78 @@ let activeButton = 'questionItem1'
 let prevButton = 'questionItem1'
 
 document.getElementById('addQuestionButton').addEventListener('click', ()=>{
-    prevButton = activeButton;
-    //save question properties
-    let answers = Array.from(document.getElementsByClassName('checkMultipleChoise')).map(input => input.value)
-    let tfAnswers = Array.from(document.getElementsByClassName('checkTrueFalseChoise')).map(input=>input.value)
-    if (typeOfQuestion.value == 'multipleChoice') {
-      test.addQuestion(inputText.value, typeOfQuestion.value, [option1.value, option2.value, option3.value, option4.value], answers)
-    }else if (typeOfQuestion.value == 'trueFalse'){
-      test.addQuestion(inputText.value, typeOfQuestion.value, ['True', 'False'], tfAnswers)
-    }else if (typeOfQuestion.value == 'openAnswer'){
-      test.addQuestion(inputText.value, typeOfQuestion.value, [], [])
+    if (checkEmpty() == true){
+        alert('You need to make the question completely.')
+    }else{
+        prevButton = activeButton;
+        //save question properties
+        let answers = Array.from(document.getElementsByClassName('checkMultipleChoise')).map(input => input.value)
+        let tfAnswers = Array.from(document.getElementsByClassName('checkTrueFalseChoise')).map(input=>input.value)
+        if (typeOfQuestion.value == 'multipleChoice') {
+        test.addQuestion(inputText.value, typeOfQuestion.value, [option1.value, option2.value, option3.value, option4.value], answers)
+        }else if (typeOfQuestion.value == 'trueFalse'){
+        test.addQuestion(inputText.value, typeOfQuestion.value, ['True', 'False'], tfAnswers)
+        }else if (typeOfQuestion.value == 'openAnswer'){
+        test.addQuestion(inputText.value, typeOfQuestion.value, [], [])
+        }
+        emptyLines()
+        const questionNumbers = Array.from(document.getElementsByClassName('questonListItem'))
+        //create new button
+        let button = document.createElement('button')
+        button.classList = 'questonListItem'
+        button.style.border = '5px solid black'
+        button.style.marginLeft = `${marginnn + 80}px`
+        marginnn+= 80;
+        button.id = `questionItem${questionNumbers.length+1}`
+        button.textContent = questionNumbers.length+1
+        activeButton = button.id
+        questionsList.appendChild(button)
+        //make previous button with simple border
+        document.getElementById(prevButton).style.border = '1px solid black'
+        //add Onclick function for created button
+        button.onclick = () => {
+        prevButton = activeButton
+        activeButton = button.id
+        button.style.border = '5px solid black';
+        document.getElementById(prevButton).style.border = '1px solid black'
+        openQuestion(button);
+        };
     }
-    emptyLines()
-    const questionNumbers = Array.from(document.getElementsByClassName('questonListItem'))
-    //create new button
-    let button = document.createElement('button')
-    button.classList = 'questonListItem'
-    button.style.border = '5px solid black'
-    button.style.marginLeft = `${marginnn + 80}px`
-    marginnn+= 80;
-    button.id = `questionItem${questionNumbers.length+1}`
-    button.textContent = questionNumbers.length+1
-    activeButton = button.id
-    questionsList.appendChild(button)
-    //make previous button with simple border
-    document.getElementById(prevButton).style.border = '1px solid black'
-    //add Onclick function for created button
-    button.onclick = () => {
-      prevButton = activeButton
-      activeButton = button.id
-      button.style.border = '5px solid black';
-      document.getElementById(prevButton).style.border = '1px solid black'
-      openQuestion(button);
-    };
 });
+
+function checkEmpty(){
+    if (typeOfQuestion.value == 'multipleChoice') {
+            return checkMultipleChoise()
+        }else if (typeOfQuestion.value == 'trueFalse'){
+            return checkTrueFalse()
+        }else if (typeOfQuestion.value == 'openAnswer'){
+            return checkOpenAnswer()
+        }
+    function checkMultipleChoise(){
+        if (inputText.value != '' && option1.value != '' && option2.value != '' && option3.value != '' && option4.value != '' && (checkbox1.value == 1 || checkbox2.value == 1 || checkbox3.value == 1 || checkbox4.value == 1)){
+            return false;
+        }
+        else {
+            return true
+        }
+    }
+
+    function checkTrueFalse(){
+        if (inputText.value != '' && (trueFalseCheck1.value == 1 || trueFalseCheck2.value == 1)) {
+            return false;
+        } else {
+            return true
+        }
+    }
+
+    function checkOpenAnswer(){
+        if (inputText.value != '' && openAnswerText.value != ''){
+            return false
+        } else{
+            return true
+        }
+    }
+}
 
 function openQuestion(button){
   const index = +button.textContent
