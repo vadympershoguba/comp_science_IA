@@ -109,7 +109,10 @@ function openQuestion(button){
   const index = +button.textContent
   let question = test.questions[index-1]
   console.log(question)
-  if (question.type == 'multipleChoice'){
+  if (question == undefined) {
+    emptyLines()
+  }
+  else if (question.type == 'multipleChoice'){
     showMCQuestion(question)
   }
   else if (question.type == 'trueFalse'){
@@ -120,6 +123,20 @@ function openQuestion(button){
   }
 }
 
+function showMCQuestion(question){
+  //show question
+  inputText.value = question.question
+  //show correct answers
+  checkbox1.style.backgroundColor = question.answer[0] == '1' ? 'green' : 'white';
+  checkbox2.style.backgroundColor = question.answer[1] == '1' ? 'green' : 'white';
+  checkbox3.style.backgroundColor = question.answer[2] == '1' ? 'green' : 'white';
+  checkbox4.style.backgroundColor = question.answer[3] == '1' ? 'green' : 'white';
+  //show answer options
+  option1.value = question.options[0]
+  option2.value = question.options[1]
+  option3.value = question.options[2]
+  option4.value = question.options[3]
+}
 
 function emptyLines() {
   inputText.value = '';
