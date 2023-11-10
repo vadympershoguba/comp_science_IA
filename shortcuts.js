@@ -62,6 +62,9 @@ app.get('/', (req, res) => {
 
 //db.run('create table users(user_id, username, password)')
 
+//db.run('create table user_tests(test_id, username, test_name, test_complexity, test_topic)')
+
+//db.run('create table questions(test_id, question_id, question, type, options, answer)')
 
 /*
 
