@@ -53,6 +53,9 @@ document.getElementById('menuBox').addEventListener('click', ()=>{
 class Test {
   constructor() {
     this.questions = [];
+    this.name = '';
+    this.complexity = '';
+    this.topic = '';
   }
 
   addQuestion(question, type, options, answer) {
@@ -299,4 +302,22 @@ questionItem1.addEventListener('click', ()=>{
   questionItem1.style.border = '5px solid black';
   document.getElementById(prevButton).style.border = '1px solid black'
   openQuestion(questionItem1);
+})
+
+document.getElementById('saveTheTest').addEventListener('click', ()=>{
+  test.complexity = testComplexity.value;
+  test.name = testName.value;
+  test.topic = testTopic.value;
+  fetch('/saveTest', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        test: test,
+        username: localStorage.getItem("username")
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {})
 })

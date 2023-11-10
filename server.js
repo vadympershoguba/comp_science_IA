@@ -21,3 +21,5 @@ app.listen(port, () => {
 const signUpUser = require('./routes/signUpUser')
 app.use('/signUpUser', signUpUser);
 
+const saveTest = require('./routes/saveTest')
+app.use('/saveTest', saveTest);
