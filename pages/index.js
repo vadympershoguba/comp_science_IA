@@ -72,23 +72,54 @@ class Question {
   }
 }
 
-let marginnn = 0
+let marginnn = 10
+let activeButton = 'questionItem1'
+let prevButton = 'questionItem1'
 
 document.getElementById('addQuestionButton').addEventListener('click', ()=>{
+    prevButton = activeButton;
+    //save question properties
     let answers = Array.from(document.getElementsByClassName('checkMultipleChoise')).map(input => input.value)
     test.addQuestion(inputText.value, typeOfQuestion.value, [option1.value, option2.value, option3.value, option4.value], answers)
     emptyLines()
-
     const questionNumbers = Array.from(document.getElementsByClassName('questonListItem'))
-    questionNumbers[questionNumbers.length-1].style.border = '1px solid black';
+    //create new button
     let button = document.createElement('button')
-    button.classList = 'questonListItem';
-    button.style.border = '5px solid black';
-    button.style.marginLeft = `${marginnn + 80}px`;
+    button.classList = 'questonListItem'
+    button.style.border = '5px solid black'
+    button.style.marginLeft = `${marginnn + 80}px`
     marginnn+= 80;
+    button.id = `questionItem${questionNumbers.length+1}`
     button.textContent = questionNumbers.length+1
+    activeButton = button.id
     questionsList.appendChild(button)
+    //make previous button with simple border
+    document.getElementById(prevButton).style.border = '1px solid black'
+    //add Onclick function for created button
+    button.onclick = () => {
+      prevButton = activeButton
+      activeButton = button.id
+      button.style.border = '5px solid black';
+      document.getElementById(prevButton).style.border = '1px solid black'
+      openQuestion(button);
+    };
 });
+
+function openQuestion(button){
+  const index = +button.textContent
+  let question = test.questions[index-1]
+  console.log(question)
+  if (question.type == 'multipleChoice'){
+    showMCQuestion(question)
+  }
+  else if (question.type == 'trueFalse'){
+    showTFQUestion(question)
+  }
+  else if (question.type == 'openAnswer'){
+    showOAQuestion(question)
+  }
+}
+
 
 function emptyLines() {
   inputText.value = '';
@@ -170,4 +201,12 @@ document.getElementById('trueFalseCheck1').addEventListener('click', ()=>{
 document.getElementById('trueFalseCheck2').addEventListener('click', ()=>{
   document.getElementById('trueFalseCheck2').style.backgroundColor = document.getElementById('trueFalseCheck2').value == 0 ? 'green' : 'white';
   document.getElementById('trueFalseCheck2').value = document.getElementById('trueFalseCheck2').value == 0 ? 1 : 0;
+})
+
+questionItem1.addEventListener('click', ()=>{
+  prevButton = activeButton
+  activeButton = 'questionItem1'
+  questionItem1.style.border = '5px solid black';
+  document.getElementById(prevButton).style.border = '1px solid black'
+  openQuestion(questionItem1);
 })
