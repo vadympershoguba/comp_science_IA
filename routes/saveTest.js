@@ -7,8 +7,23 @@ router.post('/', async (req, res, next) => {
     data = req.body;
     const testID = generateID()
     await saveTestDB(data, testID)
-    res.json({})
+    for (let i = 0; i < data.test.questions.length; i++){
+        await saveQuestionDB(data.test.questions[i], testID, generateID())
+    }
+    res.json({message: 'You successfuly saved the test.'})
 });
+
+async function saveQuestionDB(data, test_id, question_id) {
+    return new Promise((resolve, reject) => {
+        db.run('insert into questions(test_id, question_id, question, type, options, answer) values (?, ?, ?, ?, ?, ?)', [`${test_id}`, `${question_id}`, `${data.question}`, `${data.type}`, `${data.options}`, `${data.answer}`], function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
 
 async function saveTestDB(data, test_id) {
     return new Promise((resolve, reject) => {

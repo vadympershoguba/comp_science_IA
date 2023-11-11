@@ -16,8 +16,34 @@ document.addEventListener("DOMContentLoaded", ()=>{
     document.getElementById('signUpButton').style.display = 'none'
     document.getElementById('logInBUtton').style.display = 'none'
   }
+  fetch('/getUserTests', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        username: localStorage.getItem('username')
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    data = Array.from(data.data);
+    console.log(data)
+      for (let i = 0; i < data.length; i++) {
+        createTestNameButton(data[i], i)
+      }
+  })
 });
-
+let toppp = 420
+function createTestNameButton (name, index) {
+  const button = document.createElement('button');
+  button.classList = ('testButton')
+  button.id = `testButton${index}`
+  button.textContent = name.test_name
+  button.style.top = `${toppp}px`
+  toppp += 80
+  menuBox.appendChild(button)
+}
 
 document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
     fetch('/signUpUser', {
@@ -319,5 +345,18 @@ document.getElementById('saveTheTest').addEventListener('click', ()=>{
     }),
   })
   .then(response => response.json())
-  .then(data => {})
+  .then(data => {
+    alert(data.message);
+    document.getElementById('menuBox').style.display = 'block';
+    document.getElementById('creationBox').style.display = 'none';
+    location.reload()
+  })
 })
+
+test.addQuestion('Here is the first (1st) question?', 'Multiple Choice', ['option1', 'option2', 'option3', 'option4'], [0, 1, 1, 0])
+test.addQuestion('Here is the second (2nd) question?', 'True or False', [], [1, 0])
+test.addQuestion('Here is the third (3rd) question?', 'Open answer', [], [])
+test.addQuestion('Here is the fourth (4th) question?', 'Multiple Choice', ['option___1', 'option___2', 'option___3', 'option___4'], [1, 0, 1, 0])
+test.addQuestion('Here is the fifth (5th) question?', 'True or False', [], [0, 1])
+test.addQuestion('Here is the sixth (6th) question?', 'Open answer', [], [])
+
