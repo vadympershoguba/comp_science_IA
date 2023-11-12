@@ -26,3 +26,6 @@ app.use('/saveTest', saveTest);
 
 const getUserTests = require('./routes/getUserTests')
 app.use('/getUserTests', getUserTests);
+
+const startTestSession = require('./routes/startTestSession')
+app.use('/startTestSession', startTestSession);

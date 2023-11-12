@@ -10,11 +10,12 @@ document.getElementById('signUpBoxBack').addEventListener('click', ()=>{
 
 document.addEventListener("DOMContentLoaded", ()=>{
   username = localStorage.getItem("username");
-  if (username.length >= 4) {
+  if (username.length >= 4 && username != 'null') {
     document.getElementById('usernameText').style.display = 'block'
     document.getElementById('usernameText').innerHTML = username;
     document.getElementById('signUpButton').style.display = 'none'
     document.getElementById('logInBUtton').style.display = 'none'
+    signOutButton.style.display = 'block'
   }
   fetch('/getUserTests', {
     method: 'POST',
@@ -60,6 +61,7 @@ document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
       .then(data => {
         alert(data.message)
         if (data.message == "You have successfully signed up!") {
+          signOutButton.style.display = 'block'
           document.getElementById('signUpBox').style.display = 'none'
           document.getElementById('body').style.filter = 'blur(0px)'
           document.getElementById('usernameText').style.display = 'block'
@@ -71,7 +73,7 @@ document.getElementById('signUpBoxButton').addEventListener('click', ()=>{
       })
 }); 
 
-document.getElementById('menuBox').addEventListener('click', ()=>{
+document.getElementById('createNewTestButton').addEventListener('click', ()=>{
   document.getElementById('menuBox').style.display = 'none';
   document.getElementById('creationBox').style.display = 'block';
 });
@@ -360,3 +362,60 @@ test.addQuestion('Here is the fourth (4th) question?', 'Multiple Choice', ['opti
 test.addQuestion('Here is the fifth (5th) question?', 'True or False', [], [0, 1])
 test.addQuestion('Here is the sixth (6th) question?', 'Open answer', [], [])
 
+document.getElementById('signOutButton').addEventListener('click', ()=>{
+  localStorage.setItem("username", 'null');
+  signOutButton.style.display = 'none'
+  document.getElementById('usernameText').style.display = 'none'
+  document.getElementById('signUpButton').style.display = 'inline'
+  document.getElementById('logInBUtton').style.display = 'inline'
+});
+
+document.getElementById('startTestSession').addEventListener('click', ()=>{
+  document.getElementById('menuBox').style.display = 'none';
+  document.getElementById('startSessionBox').style.display = 'block';
+  fetch('/getUserTests', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        username: localStorage.getItem('username')
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    data = Array.from(data.data);
+      for (let i = 0; i < data.length; i++) {
+        createTestNameButtonForList(data[i], i)
+      }
+  })
+});
+let toper = 230
+function createTestNameButtonForList (name, index) {
+  const button = document.createElement('button');
+  button.classList = ('testButton')
+  button.id = `testButton${index}`
+  button.textContent = name.test_name
+  button.style.left = '24px'
+  button.style.top = `${toper}px`
+  toper += 80
+  button.onclick = function(button){
+    const test_name = name.test_name;
+    fetch('/startTestSession', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          username: localStorage.getItem('username'),
+          testName: test_name
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      session_id = Array.from(data.session_id);
+        console.log(session_id)
+    })
+  }
+  startSessionBox.appendChild(button)
+}
