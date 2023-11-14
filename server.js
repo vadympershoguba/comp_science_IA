@@ -14,6 +14,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
 });
 
+app.get('/join', (req, res) => {
+  res.sendFile(path.join(__dirname, 'pages', 'student.html'));
+});
+
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
@@ -29,3 +34,6 @@ app.use('/getUserTests', getUserTests);
 
 const startTestSession = require('./routes/startTestSession')
 app.use('/startTestSession', startTestSession);
+
+const joinUserToSession = require('./routes/joinUserToSession')
+app.use('/joinUserToSession', joinUserToSession);

@@ -6,7 +6,6 @@ const db = new sqlite3.Database('questions');
 router.post('/', async (req, res, next) => {
     username = req.body.username;
     testName = req.body.testName;
-    console.log(testName, username)
     const test_id = await getTestId(username, testName);
     const session_id = generateID()
     await createCode(username, test_id[0].test_id, session_id)
@@ -14,7 +13,7 @@ router.post('/', async (req, res, next) => {
 });
 
 function generateID(){
-    return Math.floor(Math.random() * (999999 - 100000 + 1)) + 1;
+    return Math.floor(Math.random() * (999999 - 100001 + 1)) + 1;
 }
 
 async function createCode(username, test_id, session_id) {

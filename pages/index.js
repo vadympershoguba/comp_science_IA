@@ -413,8 +413,9 @@ function createTestNameButtonForList (name, index) {
     })
     .then(response => response.json())
     .then(data => {
-      session_id = Array.from(data.session_id);
-        console.log(session_id)
+        startSessionBox.style.display = 'none'
+        sessionCodeBox.style.display = 'block'
+        sessionCodeText.textContent = 'Session code: ' + data.session_id
     })
   }
   startSessionBox.appendChild(button)

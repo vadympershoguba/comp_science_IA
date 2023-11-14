@@ -335,3 +335,77 @@ body {
 #startSessionBox{
     display: none;
 }
+
+#sessionCodeBox{
+    display: none;
+}
+
+#sessionCodeText{
+    position: absolute;
+    top: 400px;
+    left: 830px;
+}
+
+#joinSessionCode{
+    border: 1px solid black;
+    width: 200px;
+    height: 70px;
+    position: absolute;
+    left: 890px;
+    padding-left: 20px;
+    top: 400px;
+    font-size: 40px;
+    text-align: center;
+    font-family: "andale mono", monospace;
+    padding-right: 20px;
+}
+
+#joinSessionButton{
+    border: 1px solid black;
+    width: 240px;
+    height: 35px;
+    position: absolute;
+    left: 890px;
+    padding-left: 20px;
+    top: 500px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: "andale mono", monospace;
+    padding-right: 20px;
+}
+
+#joinEnterUsername{
+    display: none;
+}
+
+#joinGetUsername{
+    border: 1px solid black;
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    left: 840px;
+    padding-left: 20px;
+    top: 400px;
+    font-size: 20px;
+    text-align: center;
+    font-family: "andale mono", monospace;
+    padding-right: 20px;
+}
+
+#joinGetUsernameStart{
+    border: 1px solid black;
+    width: 343px;
+    height: 35px;
+    position: absolute;
+    left: 840px;
+    padding-left: 20px;
+    top: 480px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: "andale mono", monospace;
+    padding-right: 20px;
+}
