@@ -17,9 +17,9 @@
         <button id="joinGetUsernameStart">Start Session</button>
     </div>
 
-    <div id="joinMulptileChoiceDraw">
+    <div id="joinQuestionDraw">
         <h2 style="margin-left: 20px;" id="joinMCQuestion"></h2>
-            <div class="multipleChoiseOptionsDiv">
+            <div style="margin-top: 40px;" id="joinMulptileChoiceDraw">
                 <button value="0" id="checkbox1" class="joinCheckMultipleChoise"></button>
                 <input id="option1" class="joinOptionTextMultipleChoise" type="text">
                 <button value="0" id="checkbox2" class="joinCheckMultipleChoise"></button>
@@ -29,7 +29,20 @@
                 <button value="0" id="checkbox4" class="joinCheckMultipleChoise"></button>
                 <input id="option4" class="joinOptionTextMultipleChoise" type="text">
             </div>
+
+            <div id="joinTrueFalseDraw">
+                <div style="margin-top: 40px;">
+                    <button value="0" id="joinTrueFalseCheck1" class="joinCheckMultipleChoise"></button>
+                    <input placeholder="True" id="joinTrueText" class="joinOptionTextMultipleChoise" type="text">
+                    <button value="0" id="joinTrueFalseCheck2" class="joinCheckMultipleChoise"></button>
+                    <input placeholder="False" id="joinFalseText" class="joinOptionTextMultipleChoise" type="text">
+                </div>  
+            </div>
+
+            <button id="joinNextButton">Next</button>
+            <button id="joinBackButton">Back</button>
     </div>
+
     
     <script src="student.js"></script>
 </body>

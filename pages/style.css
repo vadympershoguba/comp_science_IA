@@ -319,7 +319,7 @@ body {
 }
 
 .multipleChoiseOptionsDiv{
-    margin-top: -10px;
+    margin-top: 40px;
 }
 
 .horizontal-line {
@@ -435,12 +435,38 @@ body {
     padding-right: 20px;
 }
 
-#joinMulptileChoiceDraw{
+#joinQuestionDraw{
     display: none;
     width: 600px;
-    height: 600px;
+    height: 400px;
     border: 1px solid black;
     position: absolute;
     left: 700px;
     top: 200px;
+}
+
+#joinNextButton{
+    background-color: black;
+    color: white;
+    font-family: "andale mono", monospace;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    left: 502px;
+    top: 410px;
+}
+
+#joinBackButton{
+    display: none;
+    background-color: black;
+    color: white;
+    font-family: "andale mono", monospace;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    top: 410px;
+}
+
+#joinTrueFalseDraw{
+    display: none;
 }

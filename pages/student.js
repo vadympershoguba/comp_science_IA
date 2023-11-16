@@ -1,3 +1,6 @@
+let test = null;
+let questionIndex = 0;
+
 document.getElementById('joinSessionButton').addEventListener('click', ()=>{
     fetch('/joinUserToSession', {
         method: 'POST',
@@ -16,19 +19,54 @@ document.getElementById('joinSessionButton').addEventListener('click', ()=>{
       })
 })
 
-let test = null;
-
 document.getElementById('joinGetUsernameStart').addEventListener('click', ()=>{
-    localStorage.setItem('username', joinGetUsername.value);
-    joinEnterUsername.style.display = 'none';
-    drawMultipleChoice()
-    
+  joinQuestionDraw.style.display = 'block'
+  const questionType = test.test[questionIndex].type
+  localStorage.setItem('username', joinGetUsername.value);
+  joinEnterUsername.style.display = 'none';
+  if (questionType == 'Multiple Choice') {
+    drawMultipleChoice(questionIndex);
+  } else if (questionType == 'True or False'){
+    drawTrueFalse(questionIndex)
+  } else if (questionType = 'Open answer'){
+    drawOpenAnswer(questionIndex)
+  }
+  questionIndex++
 })
 
-function drawMultipleChoice(){
+document.getElementById('joinNextButton').addEventListener('click', ()=>{
+  joinMCQuestion.textContent = ''
+
+  const questionType = test.test[questionIndex].type
+  if (questionType == 'Multiple Choice') {
+    drawMultipleChoice(questionIndex);
+  } else if (questionType == 'True or False'){
+    drawTrueFalse(questionIndex)
+  } else if (questionType = 'Open answer'){
+    drawOpenAnswer(questionIndex)
+  }
+  questionIndex++;
+  inputs = Array.from(document.getElementsByClassName('joinOptionTextMultipleChoise')).map(input => input.value = '');
+  
+});
+
+function drawTrueFalse(index){
+  joinQuestionDraw.style.height = '240px'
+  joinNextButton.style.top = '250px'
+  joinMCQuestion.textContent = test.test[index].question;
+  joinMulptileChoiceDraw.style.display = 'none';
+  joinTrueFalseDraw.style.display = 'block'
+
+}
+
+function drawMultipleChoice(index){
+  joinQuestionDraw.style.height = '400px'
     joinMulptileChoiceDraw.style.display = 'block';
-    joinMCQuestion.textContent = test.test[0].question;
-    
+    joinMCQuestion.textContent = test.test[index].question;
+    inputs = Array.from(document.getElementsByClassName('joinOptionTextMultipleChoise'));
+    for (let i = 0; i < inputs.length; i++){
+      inputs[i].value = test.test[index].options.split(',')[i];
+    }
 }
 
 document.getElementById('checkbox1').addEventListener('click', ()=>{
