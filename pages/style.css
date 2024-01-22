@@ -345,6 +345,22 @@ body {
     padding-left: 10px;
 }
 
+#joinOpenAnswerText{
+    font-family: "andale mono", monospace;
+    font-size: 20px;
+    width: 500px;
+    margin-left: 43px;
+    margin-top: 20px;
+    height: 265px;
+    border: 1px solid black;
+    max-width: 500px;
+    min-width: 500px;
+    max-height: 265px;
+    min-height: 265px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
 #signOutButton{
     width: 100px;
     border: 1 px solid black;
@@ -469,4 +485,16 @@ body {
 
 #joinTrueFalseDraw{
     display: none;
+}
+
+#joinFinishTestButton{
+    display: none;
+    background-color: black;
+    color: white;
+    font-family: "andale mono", monospace;
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    left: 402px;
+    top: 410px;
 }

@@ -37,3 +37,6 @@ app.use('/startTestSession', startTestSession);
 
 const joinUserToSession = require('./routes/joinUserToSession')
 app.use('/joinUserToSession', joinUserToSession);
+
+const saveAnswers = require('./routes/saveAnswers')
+app.use('/saveAnswers', saveAnswers);
