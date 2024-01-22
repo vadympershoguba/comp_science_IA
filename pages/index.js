@@ -224,6 +224,7 @@ function showTFQUestion(question){
 }
 
 function showMCQuestion(question){
+  alert(question)
   typeOfQuestion.value = 'multipleChoice'
   multipleChoiceDiv.style.display = 'block';
   trueFalseDiv.style.display = 'none';

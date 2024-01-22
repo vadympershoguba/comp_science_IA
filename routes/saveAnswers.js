@@ -4,11 +4,19 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('questions');
 
 router.post('/', async (req, res, next) => {
-    const username = req.body.username;
-    const answers = req.body.answers;
-    const test_id = req.body.test_id;
-    console.log([username, answers, test_id])
-    res.json({})
+    console.log(req.body.answer.answers)
 });
+
+async function saveAnswerDB(data, test_id, question_id) {
+    return new Promise((resolve, reject) => {
+        db.run('insert into questions(test_id, question_id, question, type, options, answer) values (?, ?, ?, ?, ?, ?)', [`${test_id}`, `${question_id}`, `${data.question}`, `${data.type}`, `${data.options}`, `${data.answer}`], function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
 
 module.exports = router;

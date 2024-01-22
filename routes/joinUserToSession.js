@@ -7,7 +7,6 @@ router.post('/', async (req, res, next) => {
     const session_id = req.body.code;
     const test_id = Array.from(await findTestId(session_id))[0].test_id;
     const test = await findTest(test_id)
-    console.log(test)
     res.json({test: test})
 });
 

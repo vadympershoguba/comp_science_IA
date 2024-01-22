@@ -193,4 +193,3 @@ document.getElementById('joinFinishTestButton').addEventListener('click', ()=>{
   .then(response => response.json())
   .then(data => {})
 });
-
