@@ -43,15 +43,16 @@ document.getElementById('joinSessionButton').addEventListener('click', ()=>{
 })
 
 document.getElementById('joinGetUsernameStart').addEventListener('click', ()=>{
+  console.log(test)
   joinQuestionDraw.style.display = 'block'
   const questionType = test.test[questionIndex].type
   localStorage.setItem('username', joinGetUsername.value);
   joinEnterUsername.style.display = 'none';
-  if (questionType == 'Multiple Choice') {
+  if (questionType == 'multipleChoice') {
     drawMultipleChoice(questionIndex);
-  } else if (questionType == 'True or False'){
+  } else if (questionType == "trueFalse"){
     drawTrueFalse(questionIndex)
-  } else if (questionType = 'Open answer'){
+  } else if (questionType == 'openAnswer'){
     drawOpenAnswer(questionIndex)
   }
   questionIndex++
@@ -63,11 +64,11 @@ document.getElementById('joinNextButton').addEventListener('click', ()=>{
     Array.from(document.getElementsByClassName('joinOptionTextMultipleChoise')).map(input => input.value = '');
     joinMCQuestion.textContent = ''
     const questionType = test.test[questionIndex].type
-    if (questionType == 'Multiple Choice') {
+    if (questionType == 'multipleChoice') {
       drawMultipleChoice(questionIndex);
-    } else if (questionType == 'True or False'){
+    } else if (questionType == 'trueFalse'){
       drawTrueFalse(questionIndex)
-    } else if (questionType == 'Open answer'){
+    } else if (questionType == 'openAnswer'){
       drawOpenAnswer(questionIndex)
     }
     questionIndex++;
@@ -103,11 +104,11 @@ function clearQuestion(){
 
 function saveAnswer() {
   let answer;
-  if (test.test[questionIndex-1].type == 'Multiple Choice'){
+  if (test.test[questionIndex-1].type == 'multipleChoice'){
     answer = [checkbox1.value, checkbox2.value, checkbox3.value, checkbox4.value]
-  }else if (test.test[questionIndex-1].type == 'True or False'){
+  }else if (test.test[questionIndex-1].type == 'trueFalse'){
     answer = [joinTrueFalseCheck1.value, joinTrueFalseCheck2.value]
-  }else if (test.test[questionIndex-1].type == 'Open answer'){
+  }else if (test.test[questionIndex-1].type == 'openAnswer'){
     answer = joinOpenAnswerText.value
   }
   answers.addAnswer(test.test[questionIndex-1].question_id, localStorage.getItem('username'), test.test[questionIndex-1].type, answer)
@@ -193,3 +194,5 @@ document.getElementById('joinFinishTestButton').addEventListener('click', ()=>{
   .then(response => response.json())
   .then(data => {})
 });
+
+

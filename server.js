@@ -41,3 +41,5 @@ app.use('/joinUserToSession', joinUserToSession);
 const saveAnswers = require('./routes/saveAnswers')
 app.use('/saveAnswers', saveAnswers);
 
+const getAnswers = require('./routes/getAnswers')
+app.use('/getAnswers', getAnswers);

@@ -387,6 +387,17 @@ body {
     left: 830px;
 }
 
+#sessionUpdateButton {
+    border: 1 px solid black;
+    background-color: white;
+    font-family: "andale mono", monospace;
+    position: absolute;
+    top: 500px;
+    left: 830px;
+    width: 350px;
+    height: 30px;
+}
+
 #joinSessionCode{
     border: 1px solid black;
     width: 200px;
@@ -498,3 +509,19 @@ body {
     left: 402px;
     top: 410px;
 }
+
+table {
+    margin-left: 5%;
+    text-align: center;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+  }
+  
+  td, th {
+    text-align: center;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    height: 20px;
+  }

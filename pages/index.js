@@ -355,14 +355,14 @@ document.getElementById('saveTheTest').addEventListener('click', ()=>{
     location.reload()
   })
 })
-
+/*
 test.addQuestion('Here is the first (1st) question?', 'Multiple Choice', ['option1', 'option2', 'option3', 'option4'], [0, 1, 1, 0])
 test.addQuestion('Here is the second (2nd) question?', 'True or False', [], [1, 0])
 test.addQuestion('Here is the third (3rd) question?', 'Open answer', [], [])
 test.addQuestion('Here is the fourth (4th) question?', 'Multiple Choice', ['option___1', 'option___2', 'option___3', 'option___4'], [1, 0, 1, 0])
 test.addQuestion('Here is the fifth (5th) question?', 'True or False', [], [0, 1])
 test.addQuestion('Here is the sixth (6th) question?', 'Open answer', [], [])
-
+*/
 document.getElementById('signOutButton').addEventListener('click', ()=>{
   localStorage.setItem("username", 'null');
   signOutButton.style.display = 'none'
@@ -370,7 +370,7 @@ document.getElementById('signOutButton').addEventListener('click', ()=>{
   document.getElementById('signUpButton').style.display = 'inline'
   document.getElementById('logInBUtton').style.display = 'inline'
 });
-
+testName = null
 document.getElementById('startTestSession').addEventListener('click', ()=>{
   document.getElementById('menuBox').style.display = 'none';
   document.getElementById('startSessionBox').style.display = 'block';
@@ -392,6 +392,7 @@ document.getElementById('startTestSession').addEventListener('click', ()=>{
   })
 });
 let toper = 230
+let session_id = null;
 function createTestNameButtonForList (name, index) {
   const button = document.createElement('button');
   button.classList = ('testButton')
@@ -399,7 +400,7 @@ function createTestNameButtonForList (name, index) {
   button.textContent = name.test_name
   button.style.left = '24px'
   button.style.top = `${toper}px`
-  toper += 80
+  toper += 80  
   button.onclick = function(button){
     const test_name = name.test_name;
     fetch('/startTestSession', {
@@ -417,7 +418,28 @@ function createTestNameButtonForList (name, index) {
         startSessionBox.style.display = 'none'
         sessionCodeBox.style.display = 'block'
         sessionCodeText.textContent = 'Session code: ' + data.session_id
+        session_id = data.session_id
     })
   }
   startSessionBox.appendChild(button)
 }
+
+sessionUpdateButton.addEventListener('click', ()=>{
+
+  fetch('/getAnswers', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        session_id: session_id,
+        test_name: testName
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    sessionCodeBox.style.display = 'none'
+    tableViewBox.style.display = 'block'
+    
+  })
+});
