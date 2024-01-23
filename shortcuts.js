@@ -7,6 +7,11 @@ const aiMultipleChoise = require('./routes/aiMultipleChoise')
 app.use('/aiMultipleChoise', aiMultipleChoise);
 */
 
+
+// db.run('create table answers(session_id, question_id, username, question_type, answer)')
+
+
+
 //db.run('create table answers(test_id, question_id, username, answer)')
 
 /*
