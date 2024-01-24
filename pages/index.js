@@ -1,7 +1,10 @@
+
 document.getElementById('signUpButton').addEventListener('click', ()=>{
     document.getElementById('signUpBox').style.display = 'block'
     document.getElementById('body').style.filter = 'blur(5px)'
 });
+testName = null
+
 
 document.getElementById('signUpBoxBack').addEventListener('click', ()=>{
     document.getElementById('signUpBox').style.display = 'none'
@@ -335,7 +338,7 @@ questionItem1.addEventListener('click', ()=>{
 
 document.getElementById('saveTheTest').addEventListener('click', ()=>{
   test.complexity = testComplexity.value;
-  test.name = testName.value;
+  test.name = document.getElementById('testName').value;
   test.topic = testTopic.value;
   fetch('/saveTest', {
     method: 'POST',
@@ -370,7 +373,6 @@ document.getElementById('signOutButton').addEventListener('click', ()=>{
   document.getElementById('signUpButton').style.display = 'inline'
   document.getElementById('logInBUtton').style.display = 'inline'
 });
-testName = null
 document.getElementById('startTestSession').addEventListener('click', ()=>{
   document.getElementById('menuBox').style.display = 'none';
   document.getElementById('startSessionBox').style.display = 'block';
@@ -440,6 +442,18 @@ sessionUpdateButton.addEventListener('click', ()=>{
   .then(data => {
     sessionCodeBox.style.display = 'none'
     tableViewBox.style.display = 'block'
-    
+    usernameCell.innerHTML = data.student_answers[0].username
+    const correct = data.question_answers
+    const student = data.student_answers
+    for (let i = 0; i < correct.length; i++){
+      const id = 'question_' + `${i+1}`
+      if (correct[i].answer == student[i].answer){
+        document.getElementById(id).style.backgroundColor = 'green'
+      }else if (correct[i].type == 'openAnswer'){
+        document.getElementById(id).style.backgroundColor = 'yellow'
+      }else{
+        document.getElementById(id).style.backgroundColor = 'red'
+      }
+    }
   })
 });
