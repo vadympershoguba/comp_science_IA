@@ -25,7 +25,9 @@
             <button id="startTestSession">Start a test session</button>
         </div>
 
-        <div style="display: none;" id="tableViewBox">
+        <div style="display: block;" id="tableViewBox">
+            <button id="sendFeedBack">Send Results</button>
+            <textarea id="sendFeedbackArea" placeholder="Write your feedback here"></textarea>
             <table id="tableView">
                 <tr>
                   <th>Students</th>
@@ -38,12 +40,12 @@
                 </tr>
                 <tr>
                     <td><h3 id="usernameCell"></h3></td>
-                    <td id="question_1"></td>
-                    <td id="question_2"></td>
-                    <td id="question_3"></td>
-                    <td id="question_4"></td>
-                    <td id="question_5"></td>
-                    <td id="question_6"></td>
+                    <td><button id="question_1" class="tableButton"></button></td>
+                    <td><button id="question_2" class="tableButton"></button></td>
+                    <td><button onclick="showAnswer(2)" id="question_3" class="tableButton"></button></td>
+                    <td><button id="question_4" class="tableButton"></button></td>
+                    <td><button id="question_5" class="tableButton"></button></td>
+                    <td><button onclick="showAnswer(5)" id="question_6" class="tableButton"></button></td>
                 </tr>
               </table>
         </div>
@@ -119,6 +121,14 @@
         <button id="signUpBoxButton">Confirm</button>
         <button id="signUpBoxBack">Back</button>
     </div>
+
+    <div style="display: none;" id="openAnswerShowBox">
+        <h3 id="openAnswerTextShow">Here is the example of the question</h3>
+        <textarea id="openAnswerAreaShow" cols="30" rows="10"></textarea>
+        <button onclick="changeColorButton(1)" id="openAnswerCorrect">Correct</button>
+        <button onclick="changeColorButton(0)" id="openAnswerInCorrect">Incorrect</button>
+    </div>
+
     <script src="index.js"></script>
 </body>
 </html>

@@ -425,7 +425,8 @@ function createTestNameButtonForList (name, index) {
   }
   startSessionBox.appendChild(button)
 }
-
+let studentAnswer = null;
+let correctAnswer = null;
 sessionUpdateButton.addEventListener('click', ()=>{
 
   fetch('/getAnswers', {
@@ -445,6 +446,8 @@ sessionUpdateButton.addEventListener('click', ()=>{
     usernameCell.innerHTML = data.student_answers[0].username
     const correct = data.question_answers
     const student = data.student_answers
+    studentAnswer = student
+    correctAnswer = correct
     for (let i = 0; i < correct.length; i++){
       const id = 'question_' + `${i+1}`
       if (correct[i].answer == student[i].answer){
@@ -456,4 +459,22 @@ sessionUpdateButton.addEventListener('click', ()=>{
       }
     }
   })
+});
+let globalIndex = null;
+function showAnswer(index){
+  document.getElementById('openAnswerShowBox').style.display = 'block'
+  document.getElementById('openAnswerTextShow').innerHTML = correctAnswer[index].question;
+  document.getElementById('openAnswerAreaShow').value = studentAnswer[index].answer
+  globalIndex = index
+}
+
+function changeColorButton(index){
+  let color = index == 1 ? 'green' : 'red';
+  document.getElementById('question_' + `${globalIndex+1}`).style.backgroundColor = color;
+  document.getElementById('openAnswerShowBox').style.display = 'none'
+}
+
+sendFeedBack.addEventListener('click', ()=>{
+  let results = 0;
+  
 });

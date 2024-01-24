@@ -8,7 +8,6 @@ router.post('/', async (req, res, next) => {
     const student_answers = await getAnswers(session_id)
     const test_id = await getTestId(session_id)
     const questions = await getCorrectAnswers(test_id[0].test_id)
-    console.log(questions)
     res.json({question_answers: questions, student_answers: student_answers})
 });
 
