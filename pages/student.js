@@ -178,6 +178,7 @@ document.getElementById('joinFinishTestButton').addEventListener('click', ()=>{
   saveAnswer()
   joinQuestionDraw.style.display = 'none';
   alert('You finished your test!')
+  getResultsButton.style.display = 'block'
   console.log(answers)
   console.log(test)
   fetch('/saveAnswers', {
@@ -194,5 +195,22 @@ document.getElementById('joinFinishTestButton').addEventListener('click', ()=>{
   .then(response => response.json())
   .then(data => {})
 });
+
+document.getElementById('getResultsButton').addEventListener('click', ()=>{
+  fetch('/getResults', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        username: localStorage.getItem("username"),
+        session_id: document.getElementById('joinSessionCode').value 
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert(data.data)
+  })
+})
 
 

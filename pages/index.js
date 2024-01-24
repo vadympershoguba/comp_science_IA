@@ -476,5 +476,40 @@ function changeColorButton(index){
 
 sendFeedBack.addEventListener('click', ()=>{
   let results = 0;
-  
+  if (question_1.style.backgroundColor == 'green') {
+    results = results + 1;
+  }
+  if (question_2.style.backgroundColor == 'green') {
+    results = results + 1;
+  }
+  if (question_3.style.backgroundColor == 'green') {
+    results = results + 1;
+  }
+  if (question_4.style.backgroundColor == 'green') {
+    results = results + 1;
+  }
+  if (question_5.style.backgroundColor == 'green') {
+    results = results + 1;
+  }
+  if (question_6.style.backgroundColor == 'green') {
+    results = results + 1;
+  }
+  const feedback = document.getElementById('sendFeedbackArea').value;
+  const username = studentAnswer[0].username
+  fetch('/saveResults', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        username: username,
+        points: results,
+        feedback: feedback,
+        session_id: session_id
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert(data.result)
+  })
 });

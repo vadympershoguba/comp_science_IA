@@ -602,3 +602,14 @@ table {
     width: 207px;
     height: 400px;
   }
+
+  #getResultsButton{
+    display: none;
+    width: 300px;
+    height: 40px;
+    font-family: "andale mono", monospace;
+    background-color: white;
+    border: 1px solid black;
+    margin-left: 861px;
+    margin-top: 400px;
+  }

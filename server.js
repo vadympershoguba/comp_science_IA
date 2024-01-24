@@ -44,3 +44,8 @@ app.use('/saveAnswers', saveAnswers);
 const getAnswers = require('./routes/getAnswers')
 app.use('/getAnswers', getAnswers);
 
+const saveResults = require('./routes/saveResults')
+app.use('/saveResults', saveResults);
+
+const getResults = require('./routes/getResults')
+app.use('/getResults', getResults);
