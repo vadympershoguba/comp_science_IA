@@ -460,7 +460,9 @@ sessionUpdateButton.addEventListener('click', ()=>{
     }
   })
 });
+
 let globalIndex = null;
+
 function showAnswer(index){
   document.getElementById('openAnswerShowBox').style.display = 'block'
   document.getElementById('openAnswerTextShow').innerHTML = correctAnswer[index].question;
@@ -513,3 +515,99 @@ sendFeedBack.addEventListener('click', ()=>{
     alert(data.result)
   })
 });
+
+document.getElementById('gptFeedback').addEventListener('click', ()=>{
+  fetch('/getFeedback', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        correct_answers: correctAnswer,
+        username: studentAnswer[0].username,
+        answers: getWrongAnswers()
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.responce)
+    sendFeedbackArea.value = data.responce
+  })
+});
+
+function getWrongAnswers (){
+  let outcome = []
+  outcome.push(question_1.style.backgroundColor == 'green' ? 1 : 0)
+  outcome.push(question_2.style.backgroundColor == 'green' ? 1 : 0)
+  outcome.push(question_3.style.backgroundColor == 'green' ? 1 : 0)
+  outcome.push(question_4.style.backgroundColor == 'green' ? 1 : 0)
+  outcome.push(question_5.style.backgroundColor == 'green' ? 1 : 0)
+  outcome.push(question_6.style.backgroundColor == 'green' ? 1 : 0)
+  return outcome;
+}
+
+document.getElementById('gptCreateQuestion').addEventListener('click', ()=>{
+  fetch('/createQuestion', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        topic: testTopic.value,
+        type: getCurrentQuestionType()
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    const responce = JSON.parse(data.responce)
+    inputText.value = responce['Question']
+    
+    const answers = responce['Answers']
+    const test_type = getCurrentQuestionType()
+    if (test_type == 'Multiple Choice') {
+      const options = responce['Options']
+      option1.value = options[0]
+      option2.value = options[1]
+      option3.value = options[2]
+      option4.value = options[3]
+      for (i = 0; i < answers.length; i++) {
+        if (answers[i][0] == 'A') {
+          checkbox1.style.backgroundColor = 'green'
+          checkbox1.value = 1;
+        } else if (answers[i][0] == 'B') {
+          checkbox2.style.backgroundColor = 'green'
+          checkbox2.value = 1;
+        } else if (answers[i][0] == 'C') {
+          checkbox3.style.backgroundColor = 'green'
+          checkbox3.value = 1;
+        } else if (answers[i][0] == 'D') {
+          checkbox4.style.backgroundColor = 'green'
+          checkbox4.value = 1;
+        }
+      }
+    } else if (test_type == 'True or False'){
+      const answero = responce['Answer']
+      console.log(answero)
+      if (answero == 'true' || answero == true || answero == 'True') {
+        trueFalseCheck1.style.backgroundColor = 'green';
+        trueFalseCheck1.value = 1;
+      } else {
+        trueFalseCheck2.style.backgroundColor = 'green'
+        trueFalseCheck2.value = 1;
+      }
+    }
+    
+  })
+});
+
+function getCurrentQuestionType(){
+  const type = typeOfQuestion.value;
+  if (type == 'multipleChoice') {
+    return 'Multiple Choice'
+  } else if (type == 'openAnswer'){
+    return 'Open Answer' 
+  } else if (type == 'trueFalse'){
+    return 'True or False'
+  }
+}

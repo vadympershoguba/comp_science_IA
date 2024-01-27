@@ -587,7 +587,7 @@ table {
     border: 1px solid black;
     position: absolute;
     margin-top: 130px;
-    width: 227px;
+    width: 150px;
     margin-left: 100px;
     height: 30px;
   }
@@ -612,4 +612,48 @@ table {
     border: 1px solid black;
     margin-left: 861px;
     margin-top: 400px;
+  }
+
+  #gptFeedback{
+    position: absolute;
+    width: 68px;
+    margin-left: 20px;
+    font-family: "andale mono", monospace;
+    background-color: black;
+    color: white;
+    height: 29px;
+    margin-top: 130px;
+    margin-left: 260px;
+  }
+
+  #gptCreateQuestion{
+    width: 100px;
+    height: 40px;
+    font-family: "andale mono", monospace;
+    background-color: black;
+    color: white;
+    position: absolute;
+    left: 1550px;
+    font-size: 20px;
+  }
+
+  #feedbackStudentArea{
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    font-family: "andale mono", monospace;
+    padding: 10px;
+    position: absolute;
+    top: 200px;
+    left: 710px;
+    max-width: 600px;
+    min-width: 600px;
+    min-height: 600px;
+    max-height: 600px;
+  }
+
+  #studentScore{
+    position: absolute;
+    top: 150px;
+    left: 710px;
   }

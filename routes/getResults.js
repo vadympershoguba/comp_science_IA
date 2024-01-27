@@ -7,8 +7,7 @@ router.post('/', async (req, res, next) => {
     const info = req.body
     const results = await getResults(info);
     console.log(results)
-    let responce = 'Your score is - ' + `${results[0].points}` + ', your feedback is - ' + `${results[0].feedback}`
-    res.json({data: responce})
+    res.json({results: results[0].points, feedback: results[0].feedback })
 });
 
 async function getResults(info) {

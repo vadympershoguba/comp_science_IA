@@ -49,3 +49,9 @@ app.use('/saveResults', saveResults);
 
 const getResults = require('./routes/getResults')
 app.use('/getResults', getResults);
+
+const getFeedback = require('./routes/getFeedback')
+app.use('/getFeedback', getFeedback);
+
+const createQuestion = require('./routes/createQuestion')
+app.use('/createQuestion', createQuestion);

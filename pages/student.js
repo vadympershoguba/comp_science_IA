@@ -209,7 +209,9 @@ document.getElementById('getResultsButton').addEventListener('click', ()=>{
   })
   .then(response => response.json())
   .then(data => {
-    alert(data.data)
+    feedbackBox.style.display = 'block';
+    feedbackStudentArea.value = data.feedback;
+    studentScore.innerHTML = 'Your score: ' + data.results
   })
 })
 
